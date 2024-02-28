@@ -14,17 +14,16 @@ using TMPro;
 
 namespace CustomArts
 {
+    [BepInDependency("com.willis.rounds.unbound")]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
-    internal class CustomArts : BaseUnityPlugin
+    public class CustomArts : BaseUnityPlugin
     {
         private const string ModId = "koala.rounds.customarts";
         private const string ModName = "Custom Arts";
         private const string Version = "0.0.0";
 
         public static CustomArts instance;
-
-        //internal static AssetBundle Assets = null;
 
         private List<GameObject> Foregrounds = new List<GameObject>();
         private List<GameObject> Backgrounds = new List<GameObject>();
@@ -100,8 +99,6 @@ namespace CustomArts
             instance.FunnyStorer.name = "CustomArts - Art Storer";
             DontDestroyOnLoad(instance.FunnyStorer);
 
-            //Assets = AssetUtils.LoadAssetBundleFromResources("dipndotsassets", typeof(CustomArts).Assembly);
-
             Unbound.RegisterClientSideMod(ModId);
         }
         private void Start()
@@ -130,7 +127,6 @@ namespace CustomArts
                 RegisterHFG(ps.gameObject, ModId, ModName);
             }
 
-            //RegisterFG(Assets.LoadAsset<GameObject>("FireBall"), ModId, ModName);
 
             Unbound.RegisterMenu("Custom Arts", () => { }, NewGUI, null, false);
         }
